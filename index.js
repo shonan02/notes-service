@@ -5,6 +5,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+//Use static middleware to show static content
+app.use(express.static('dist'));
+
 let notes = [
     {
       id: 1,
