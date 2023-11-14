@@ -31,12 +31,6 @@ app.get('/api/notes/:id', (req, res) => {
 app.post('api/notes', (req, res, next) => {
     const body = req.body;
 
-    if(body.content === undefined) {
-        return res.status(400).json({
-            error: 'content missing'
-        })
-    }
-
     const note = Note({
         content: body.content,
         important: body.important || false,
@@ -45,7 +39,7 @@ app.post('api/notes', (req, res, next) => {
     note.save().then(saved => {
         res.json(saved);
     })
-    .catch(err => next(error));
+    .catch(err => next(err));
 })
 
 app.delete('/api/notes/:id', (req, res, next) => {
